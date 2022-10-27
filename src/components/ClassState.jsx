@@ -11,12 +11,14 @@ export class ClassState extends React.Component {
             value: "",
             error: false,
             loading: false,
+            confirmed: false,
         };
     }
     fetching = async () => {
         console.log("Iniciando validación - class");
         await sleep(1000);
-        this.setState({loading: false, error: this.state.value !== SECURITY_CODE});
+        const error = this.state.value !== SECURITY_CODE;
+        this.setState({loading: false, error: error, confirmed: !error});
         console.log("Terminando validación - class");
     }
 
@@ -28,6 +30,7 @@ export class ClassState extends React.Component {
     }
 
     render(){
+        const { name } = this.props;
         const { error, loading, value } = this.state;
         return (
             <div>
