@@ -19,6 +19,27 @@ export const UseState = ({ name }) => {
         setState({...state, error: error, loading: false, confirmed: !error})
     }
 
+    const onWrite = (e) => {
+        setState({...state, value: e.target.value})
+    }
+
+    const onCheck = () => {
+        setState({
+            ...state,
+            loading: true,
+            error: false,
+        })
+    }
+
+    const onDelete = () => {
+        setState({...state, deleted: true, });
+    }
+
+    const onReset = () => {
+        setState({...state, value: "", deleted: false,  confirmed: false });
+    }
+
+
     useEffect(() => {
         const fetching = async () => {
             console.log("Iniciando validación");
